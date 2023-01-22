@@ -69,9 +69,6 @@ public class Game {
     
 }
 
-    private static boolean isWon() {
-        return false;
-    }
 
     // loop through user inpout and display board in console
         public static void printBoard() {
@@ -94,5 +91,17 @@ public class Game {
             }
         }
         gameboard[row][col] = (char) (count + '0');
+    }
+
+    public static boolean isWon() {
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++){
+                if (gameboard[i][j] == '-' && !mine[i][j]) {
+                    
+                }
+            }
+        }
+        return false;
     }
 }
