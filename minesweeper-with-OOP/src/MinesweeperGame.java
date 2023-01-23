@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Game {
+public class MinesweeperGame {
 
     static int rows;
     static int cols;
@@ -9,8 +9,7 @@ public class Game {
     static boolean[][] mine;
 
     public static void main(String[] args) throws Exception {
-
-        // welcome sign
+       // welcome sign
         System.out.println("\n ****** Welcome to Minesweeper ****** \n");
 
         // obtain user input for the desired game board
@@ -47,7 +46,7 @@ public class Game {
          // main game initialisation
 
          while(true) {
-            printBoard();
+            PrintBoard.printBoard();
             System.err.println("\n Note the 1st row and 1st column are defined as 0 \n");
             System.out.print("Enter row number: ");
             int row = sc.nextInt();
@@ -57,8 +56,8 @@ public class Game {
                 System.out.println("Boom! You just hit a mine! Game over...");
                 break;
             } else {
-                reveal(row, col);
-                if(isWon()) {
+                Reveal.reveal(row, col);
+                if(GameWon.isWon()) {
                     System.out.println("Congratulations, you won and survived!");
                     break;
                 }
@@ -66,40 +65,5 @@ public class Game {
          }
 
         }
-        
-    // loop through user inpout and display board in console
-        public static void printBoard() {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
-                    System.out.print(gameboard[i][j] + " ");
-                }
-                System.out.println();
-            }
-        }
-
-    // reveal hidden item
-    public static void reveal(int row, int col) {
-        int count = 0;
-        for (int i = row - 1; i<= row + 1; i++) {
-            for (int j = col -1; j <= col + 1; j++) {
-                if (i >= 0 && i < rows && j >= 0 && j < cols && mine[i][j]) {
-                    count++;
-                }
-            }
-        }
-        gameboard[row][col] = (char) (count + '0');
     }
 
-    // determine if game is won
-    public static boolean isWon() {
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++){
-                if (gameboard[i][j] == '-' && !mine[i][j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-}
